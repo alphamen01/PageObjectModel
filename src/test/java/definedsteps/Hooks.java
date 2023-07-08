@@ -19,7 +19,7 @@ public class Hooks {
     public void SetUp(){
         numberOfCase ++;
         System.out.println("Se esta ejecutando el escenario nro: " + numberOfCase);
-        driverManager = DriverManagerFactory.getManager(DriverType.FIREFOX);
+        driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
         driver = driverManager.getDriver();
         driver.get("https://alphamen01.github.io/angular-realworld-example-app-testing-2023/");
         driver.manage().window().maximize();

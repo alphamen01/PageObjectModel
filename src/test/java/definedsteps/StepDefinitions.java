@@ -3,45 +3,35 @@ package definedsteps;
 
 import io.cucumber.java.en.*;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
-public class StepDefinitions {
+public class StepDefinitions extends StepDefinitionsBase{
 
-    private WebDriver driver = Hooks.getDriver();
+
 
     @Given("El usuario se encuentra en la pagina Home de Conduit")
-    public void el_usuario_se_encuentra_en_la_pagina_home_de_conduit() {
-        String titleHomePage = "Conduit";
-        Assertions.assertEquals(titleHomePage,driver.getTitle());
+    public void el_usuario_se_encuentra_en_la_pagina_home_de_conduit() throws Throwable {
+
+        Assertions.assertTrue(homePage.homePageIsDisplayed());
     }
     @When("Hace click sobre Sign In")
-    public void hace_click_sobre_sign_in() {
-        WebElement titleSignIn = driver.findElement(By.xpath("//a[@routerlink='/login']"));
-        titleSignIn.click();
+    public void hace_click_sobre_sign_in() throws Throwable{
+        homePage.clickOnSignIn();
     }
     @Then("Debe de ingresar sus credenciales")
-    public void debe_de_ingresar_sus_credenciales() {
-        WebElement email = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
-        email.sendKeys("lesg.2233@gmail.com");
+    public void debe_de_ingresar_sus_credenciales() throws Exception {
+        loginPage.insertEmail();
 
-        WebElement password = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
-        password.sendKeys("LuisEnrique");
+        loginPage.insertPassword();
     }
     @And("Hace click en el boton Sign In")
-    public void hace_click_en_el_boton_sign_in() {
-        WebElement buttonSignIn = driver.findElement(By.xpath("//button[@type='submit']"));
-        buttonSignIn.click();
+    public void hace_click_en_el_boton_sign_in() throws Throwable{
+        loginPage.clickButtonSignIn();
 
     }
     @And("nos redireccionara al Global Feed")
-    public void nos_redireccionara_al_global_feed() {
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        wait.until(driver -> driver.findElement(By.xpath("//a[text()=' Global Feed ']")));
+    public void nos_redireccionara_al_global_feed() throws Throwable{
+        globalFeedPage.findGlobalFeed();
     }
 
     @Given("El usuario se encuentra en la pagina")
