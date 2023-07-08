@@ -31,7 +31,6 @@ public class StepDefinitions {
 
         WebElement password = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
         password.sendKeys("LuisEnrique");
-
     }
     @And("Hace click en el boton Sign In")
     public void hace_click_en_el_boton_sign_in() {
