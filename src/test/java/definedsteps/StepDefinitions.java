@@ -12,15 +12,12 @@ import java.time.Duration;
 
 public class StepDefinitions {
 
-    private ChromeDriver driver;
+    private ChromeDriver driver = Hooks.getDriver();
 
     @Given("El usuario se encuentra en la pagina Home de Conduit")
     public void el_usuario_se_encuentra_en_la_pagina_home_de_conduit() {
-        System.setProperty("web-driver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("https://alphamen01.github.io/angular-realworld-example-app-testing-2023/");
-        driver.manage().window().maximize();
-
+        String titleHomePage = "Conduit";
+        Assertions.assertEquals(titleHomePage,driver.getTitle());
     }
     @When("Hace click sobre Sign In")
     public void hace_click_sobre_sign_in() {
@@ -46,5 +43,10 @@ public class StepDefinitions {
     public void nos_redireccionara_al_global_feed() {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         wait.until(driver -> driver.findElement(By.xpath("//a[text()=' Global Feed ']")));
+    }
+
+    @Given("El usuario se encuentra en la pagina")
+    public void el_usuario_se_encuentra_en_la_pagina() {
+
     }
 }
