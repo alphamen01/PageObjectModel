@@ -2,13 +2,18 @@ package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
-    private By email = By.xpath("//input[@formcontrolname='email']");
+    @FindBy(xpath = "//input[@formcontrolname='email']")
+    private WebElement email;
 
-    private By password = By.xpath("//input[@formcontrolname='password']");
+    @FindBy(xpath = "//input[@formcontrolname='password']")
+    private WebElement password;
 
-    private By buttonSignIn = By.xpath("//button[@type='submit']");
+    @FindBy(xpath = "//button[@type='submit']")
+    private WebElement buttonSignIn;
 
     private String emailc = "lesg.2233@gmail.com";
     private String passwordc = "LuisEnrique";

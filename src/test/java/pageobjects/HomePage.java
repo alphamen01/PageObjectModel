@@ -2,11 +2,15 @@ package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage{
+
     private String titleHomePage = "Conduit";
 
-    private By titleSignIn = By.xpath("//a[@routerlink='/login']");
+    @FindBy(xpath = "//a[@routerlink='/login']")
+    private WebElement titleSignIn;
 
     /*
     public String getTitleHomePage() {

@@ -3,6 +3,7 @@ package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -18,9 +19,9 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void click(By element) throws Exception {
+    public void click(WebElement element) throws Exception {
         try {
-            driver.findElement(element).click();
+            element.click();
         }catch (Exception ex){
             throw new Exception("No se pudo clickear sobre el elemento: " + element);
         }
@@ -34,17 +35,17 @@ public class BasePage {
         }
     }
 
-    public void insertKeys(By element, String inputtext) throws Exception {
+    public void insertKeys(WebElement element, String inputtext) throws Exception {
         try {
-            driver.findElement(element).sendKeys(inputtext);
+            element.sendKeys(inputtext);
         }catch (Exception ex){
             throw new Exception("No se pudo insertar el texto en el elemento: " + element);
         }
     }
 
-    public void findElement(By element) throws Exception {
+    public void findElement(WebElement element) throws Exception {
         try {
-            wait.until(driver -> driver.findElement(element));
+            wait.until(driver -> element);
         }catch (Exception ex){
             throw new Exception("No se pudo localizar el elemento: " + element);
         }
